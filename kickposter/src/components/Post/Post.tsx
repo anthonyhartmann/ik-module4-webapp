@@ -1,8 +1,8 @@
-import { builtinModules } from "module";
+import React from "react";
 import { Post } from "../../types";
 import "./Post.css";
 
-function PostBox(post: Post) {
+const PostBox: React.FC<Post> = (post: Post) => {
   return (
     <div className="Post" key={post.id}>
       <p>
@@ -14,6 +14,6 @@ function PostBox(post: Post) {
       <p>{post.text}</p>
     </div>
   );
-}
+};
 
 export default PostBox;

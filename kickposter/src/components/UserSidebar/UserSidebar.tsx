@@ -1,7 +1,8 @@
+import React from "react";
 import "./UserSidebar.css";
 import { ReactComponent as TransparentLogo } from "../../assets/TransparentLogo.svg";
 
-function UserSidebar() {
+const UserSidebar: React.FC = () => {
   return (
     <div className="User-sidebar">
       <TransparentLogo className="logo" />
@@ -10,6 +11,6 @@ function UserSidebar() {
       <div className="Sidebar-item">Log Out</div>
     </div>
   );
-}
+};
 
 export default UserSidebar;

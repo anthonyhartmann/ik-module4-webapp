@@ -1,7 +1,7 @@
+import React, { useEffect } from "react";
 import "./PostsContainer.css";
 import PostBox from "../Post/Post";
 import { Post } from "../../types";
-import { useEffect } from "react";
 
 function HasScrolledToBottomOfPage(event: Event) {
   const closeToBottomBuffer = 20;
@@ -13,7 +13,7 @@ function HasScrolledToBottomOfPage(event: Event) {
   }
 }
 
-function PostsContainer() {
+const PostsContainer: React.FC = () => {
   useEffect(() => {
     window.addEventListener("scroll", HasScrolledToBottomOfPage);
     return () => {
@@ -30,6 +30,6 @@ function PostsContainer() {
       {posts}
     </div>
   );
-}
+};
 
 export default PostsContainer;
