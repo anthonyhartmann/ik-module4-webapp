@@ -1,15 +1,15 @@
 .User-sidebar {
-    width: 13%;
-    margin-left: 20px;
+  width: 13%;
+  margin-left: 20px;
 }
 
 .Sidebar-item {
-    padding: 10px;
-    color: darkslategrey;
-    font-family: Helvetica, Arial, sans-serif;
+  padding: 10px;
+  color: darkslategrey;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .logo {
-    width: 125px;
-    height: 125px;
+  width: 125px;
+  height: 125px;
 }

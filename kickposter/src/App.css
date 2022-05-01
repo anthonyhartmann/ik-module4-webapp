@@ -1,6 +1,6 @@
 .App-container {
-    display: flex;
-    flex-direction: row;
-    min-height: 1000px;
-    margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  min-height: 1000px;
+  margin-top: 15px;
 }

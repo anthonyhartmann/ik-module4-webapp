@@ -1,5 +1,5 @@
 export type Post = {
-    id: number;
-    author: string;
-    text: string;
-}
+  id: number;
+  author: string;
+  text: string;
+};
