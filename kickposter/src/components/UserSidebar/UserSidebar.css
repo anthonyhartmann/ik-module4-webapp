@@ -9,7 +9,13 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.Sidebar-item:hover {
+.Sidebar-item-link {
+  padding: 10px;
+  color: darkslategrey;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.Sidebar-item-link:hover {
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer;

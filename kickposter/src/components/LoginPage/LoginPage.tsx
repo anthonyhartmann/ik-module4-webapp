@@ -3,7 +3,7 @@ import { User } from "../../types";
 import "./LoginPage.css";
 
 interface LoginProps {
-  handleLogin: () => void
+  handleLogin: (user: User) => void
   handleRegister: () => void
 }
 
@@ -43,7 +43,7 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
       return
     }
     if (dbUser.password == passwordInput) {
-      props.handleLogin()
+      props.handleLogin(dbUser!!)
     } else {
       setPasswordError("Password doesn't match!")
       return

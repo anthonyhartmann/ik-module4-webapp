@@ -5,18 +5,19 @@ import { loadInitialData } from "./utils";
 import { useState } from "react";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
+import { User } from "./types";
 
 function App() {
   loadInitialData();
-  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  const [user, setUser] = useState<User | null>(null)
   const [registering, setRegistering] = useState<boolean>(false)
   return (
     <div className="App-container">
       {registering && <SignUpPage exitRegistering={() => setRegistering(false)}/>}
-      {!loggedIn && !registering && <LoginPage handleLogin={() => setLoggedIn(true)} handleRegister={() => setRegistering(true)}/>}
-      {loggedIn && 
-        <UserSidebar handleLogout = {() => setLoggedIn(false)}/>}
-      {loggedIn &&
+      {!user && !registering && <LoginPage handleLogin={(user: User) => setUser(user)} handleRegister={() => setRegistering(true)}/>}
+      {user && 
+        <UserSidebar handleLogout = {() => setUser(null)} user = {user}/>}
+      {user &&
         <PostsContainer />}
     </div>
   );
