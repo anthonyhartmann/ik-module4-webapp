@@ -3,3 +3,9 @@ export type Post = {
   author: string;
   text: string;
 };
+
+export type User = {
+  id: number;
+  username: string;
+  password: string;
+};

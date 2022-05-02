@@ -22,7 +22,6 @@ const PostsContainer: React.FC = () => {
       window.innerHeight + window.pageYOffset >=
       document.body.offsetHeight - closeToBottomBuffer
     ) {
-      console.log("At bottom of page");
       loadMoreData();
       setPosts(JSON.parse(localStorage.getItem("posts")!!));
     }
