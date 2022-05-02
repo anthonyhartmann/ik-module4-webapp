@@ -2,21 +2,30 @@ import React, { useEffect, useState } from "react";
 import "./PostsContainer.css";
 import PostBox from "../Post/Post";
 import { Post } from "../../types";
-import { loadMoreData, createPost } from "../../utils";
+import { loadMoreData } from "../../utils";
 
 const PostsContainer: React.FC = () => {
-  const [posts, setPosts] = useState<Array<ReturnType<typeof createPost>>>(
+  const [posts, setPosts] = useState<Array<Post>>(
     JSON.parse(localStorage.getItem("posts")!!)
   );
 
   useEffect(() => {
-    window.addEventListener("scroll", HasScrolledToBottomOfPage);
+    window.addEventListener("scroll", hasScrolledToBottomOfPage);
+    // window.addEventListener("scroll", logWhenScrolling)
+    // if we had used window.onscroll we could've wiped out someone else using the same function, so using
+    // add/remove event listener ensures we keep ourselves encapsulated
+
     return () => {
-      window.removeEventListener("scroll", HasScrolledToBottomOfPage);
+      window.removeEventListener("scroll", hasScrolledToBottomOfPage);
+      //window.removeEventListener("scroll", logWhenScrolling);
     };
   });
 
-  function HasScrolledToBottomOfPage(event: Event) {
+  const logWhenScrolling = () => {
+    console.log("I got a scroll event!");
+  };
+
+  const hasScrolledToBottomOfPage = (event: Event) => {
     const closeToBottomBuffer = 20;
     if (
       window.innerHeight + window.pageYOffset >=
@@ -26,11 +35,12 @@ const PostsContainer: React.FC = () => {
       loadMoreData();
       setPosts(JSON.parse(localStorage.getItem("posts")!!));
     }
-  }
+  };
 
-  const postElements = posts.map((post: Post) => (
-    <PostBox {...post} key={post.id} />
-  ));
+  const postElements = posts.map((post: Post) => {
+    post.when = new Date(post.when);
+    return <PostBox {...post} key={post.id} />;
+  });
 
   return (
     <div className="Posts-container">
