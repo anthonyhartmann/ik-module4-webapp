@@ -1,5 +1,17 @@
-import React from "react";
+import "@github/time-elements";
+import { TimeAgoElement } from "@github/time-elements";
+import React, { DOMAttributes } from "react";
 import "./TimeSince.css";
+
+type CustomElement<T> = Partial<T & DOMAttributes<T> & { children: any }>;
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      ["time-ago"]: CustomElement<TimeAgoElement>;
+    }
+  }
+}
 
 const formatRelativeTime = (value: number, unit: string): string => {
   if (value === 0) {
@@ -91,6 +103,15 @@ type Props = {
 const TimeSince: React.FC<Props> = (props) => {
   const ms = props.date.getTime() - new Date().getTime();
   return <span className="TimeSince">•{formatedMs(ms)}•</span>;
+};
+
+export const TimeSinceWebComponent: React.FC<Props> = (props) => {
+  return (
+    <span className="TimeSince">
+      {/* @ts-ignore */}•
+      <time-ago datetime={props.date.toISOString()}></time-ago>•
+    </span>
+  );
 };
 
 export default TimeSince;

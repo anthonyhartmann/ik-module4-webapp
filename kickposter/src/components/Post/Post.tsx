@@ -1,6 +1,6 @@
 import React from "react";
 import { Post } from "../../types";
-import TimeSince from "../TimeSince/TimeSince";
+import TimeSince, { TimeSinceWebComponent } from "../TimeSince/TimeSince";
 import "./Post.css";
 
 const PostBox: React.FC<Post> = (post: Post) => {
@@ -11,7 +11,7 @@ const PostBox: React.FC<Post> = (post: Post) => {
         <span style={{ color: "dodgerblue", fontWeight: "bold" }}>
           {post.author}
         </span>
-        <TimeSince date={post.when} />
+        <TimeSinceWebComponent date={post.when} />
       </p>
       <p></p>
       <p>{post.text}</p>
