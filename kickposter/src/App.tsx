@@ -12,6 +12,7 @@ function App() {
   const currentUser: User | null = getLoggedInUser() ?? null
   const [user, setUser] = useState<User | null>(currentUser)
   const [registering, setRegistering] = useState<boolean>(false)
+  const [showSettings, setShowSettings] = useState<boolean>(false)
   
   function handleLogout() {
     const users = localStorage.getItem("users")

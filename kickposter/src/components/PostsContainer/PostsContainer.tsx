@@ -45,6 +45,18 @@ const PostsContainer: React.FC = () => {
     <PostBox {...post} key={post.id} />
   ));
 
+  /*
+  function getFeedName() {
+    return localStorage.getItem("feedname")
+  }
+
+  return (
+    <div className="Posts-container">
+      <div className="Posts-title">{getFeedName() ?? "Your feed"}</div>
+      {postElements}
+    </div>
+  );
+  */
   return (
     <div className="Posts-container">
       <div className="Posts-title">Your feed</div>
