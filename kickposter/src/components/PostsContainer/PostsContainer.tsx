@@ -3,6 +3,7 @@ import "./PostsContainer.css";
 import PostBox from "../Post/Post";
 import { Post } from "../../types";
 import { loadMoreData, createPost } from "../../utils";
+//import Cookies from 'js-cookie';
 
 const PostsContainer: React.FC = () => {
   const [posts, setPosts] = useState<Array<ReturnType<typeof createPost>>>(
@@ -10,11 +11,24 @@ const PostsContainer: React.FC = () => {
   );
 
   useEffect(() => {
+    /*
+    const scrollPos = Cookies.get("scrollPosition")
+    if (scrollPos) {
+      window.scrollTo(0, parseInt(scrollPos))
+    }
+    window.addEventListener("scroll", updateScrollCookie);
+    */
     window.addEventListener("scroll", HasScrolledToBottomOfPage);
     return () => {
       window.removeEventListener("scroll", HasScrolledToBottomOfPage);
     };
   });
+
+  /*
+  function updateScrollCookie() {
+    document.cookie = `scrollPosition=${window.pageYOffset};max-age=604800`
+  }
+  */
 
   function HasScrolledToBottomOfPage(event: Event) {
     const closeToBottomBuffer = 20;

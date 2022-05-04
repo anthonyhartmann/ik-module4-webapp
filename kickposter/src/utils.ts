@@ -1,4 +1,4 @@
-import { Post } from "./types";
+import { Post, User } from "./types";
 
 const authors = ["ruby", "opal", "onyx", "emerald", "pyrite", "gold", "silver"];
 const postsBodies = [
@@ -20,7 +20,16 @@ const posts: Post[] = authors.map((author, idx) =>
 );
 
 export const loadInitialData = function () {
-  localStorage.setItem("posts", JSON.stringify(posts));
+  window.scrollTo(0, 0)
+  if (!localStorage.getItem("posts")) {
+    localStorage.setItem("posts", JSON.stringify(posts));
+  }
+};
+
+export const getLoggedInUser = function () {
+  const users = localStorage.getItem("users")
+  const usersDeserialized: User[] = JSON.parse(users!!)
+  return usersDeserialized.find((user) => user.loggedIn)
 };
 
 export const loadMoreData = () => {
@@ -37,14 +46,14 @@ export const loadMoreData = () => {
   );
   currentPosts.push(
     createPost(
-      currentCount,
+      currentCount + 1,
       authors[(authors.length * Math.random()) | 0],
       postsBodies[(postsBodies.length * Math.random()) | 0]
     )
   );
   currentPosts.push(
     createPost(
-      currentCount,
+      currentCount + 2,
       authors[(authors.length * Math.random()) | 0],
       postsBodies[(postsBodies.length * Math.random()) | 0]
     )

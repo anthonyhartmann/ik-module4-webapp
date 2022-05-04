@@ -43,6 +43,8 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
       return
     }
     if (dbUser.password == passwordInput) {
+      dbUser.loggedIn = true
+      localStorage.setItem("users", JSON.stringify(usersDeserialized))
       props.handleLogin(dbUser!!)
     } else {
       setPasswordError("Password doesn't match!")

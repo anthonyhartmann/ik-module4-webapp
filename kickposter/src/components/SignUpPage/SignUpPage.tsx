@@ -40,7 +40,8 @@ const SignUpPage: React.FC<SignUpProps> = (props: SignUpProps) => {
     usersDeserialized.push({
       id: usersDeserialized.length,
       username: usernameInput,
-      password: passwordInput
+      password: passwordInput,
+      loggedIn: true
     })
     localStorage.setItem("users", JSON.stringify(usersDeserialized))
     props.exitRegistering()

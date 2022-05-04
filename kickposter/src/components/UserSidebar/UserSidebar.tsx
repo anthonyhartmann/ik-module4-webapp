@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./UserSidebar.css";
 import { ReactComponent as TransparentLogo } from "../../assets/TransparentLogo.svg";
 import { User } from "../../types";
@@ -11,6 +11,9 @@ interface UserSidebarProps {
 
 const UserSidebar: React.FC<UserSidebarProps> = (props: UserSidebarProps) => {
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="User-sidebar">
       <TransparentLogo className="logo" />
