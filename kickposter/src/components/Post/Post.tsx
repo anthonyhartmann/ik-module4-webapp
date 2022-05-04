@@ -1,5 +1,6 @@
 import React from "react";
 import { Post } from "../../types";
+//import Likes from "../Likes/Likes";
 import TimeSince, { TimeSinceWebComponent } from "../TimeSince/TimeSince";
 import "./Post.css";
 
@@ -15,6 +16,11 @@ const PostBox: React.FC<Post> = (post: Post) => {
       </p>
       <p></p>
       <p>{post.text}</p>
+      {/*
+      <p>
+        <Likes count={post.likeCount} />
+      </p>
+     */}
     </div>
   );
 };
