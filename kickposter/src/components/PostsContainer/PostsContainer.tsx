@@ -3,6 +3,7 @@ import "./PostsContainer.css";
 import PostBox from "../Post/Post";
 import { Post } from "../../types";
 import { loadMoreData } from "../../utils";
+import EventsTester from "../EventsTesterContainer/EventsTesterContainer";
 
 const PostsContainer: React.FC = () => {
   const [posts, setPosts] = useState<Array<Post>>(
@@ -45,6 +46,7 @@ const PostsContainer: React.FC = () => {
   return (
     <div className="Posts-container">
       <div className="Posts-title">Your feed</div>
+      {/* <EventsTester /> */}
       {postElements}
     </div>
   );
