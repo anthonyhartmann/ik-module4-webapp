@@ -20,7 +20,6 @@ const posts: Post[] = authors.map((author, idx) =>
 );
 
 export const loadInitialData = function () {
-  window.scrollTo(0, 0)
   if (!localStorage.getItem("posts")) {
     localStorage.setItem("posts", JSON.stringify(posts));
   }

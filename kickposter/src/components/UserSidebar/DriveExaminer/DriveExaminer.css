@@ -1,0 +1,17 @@
+.Drivebar-item {
+    padding: 10px;
+    color: darkslategrey;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.Drivebar-item:hover {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.Files-info {
+    padding: 10px;
+    color: darkslategrey;
+    font-family: Helvetica, Arial, sans-serif;
+}
