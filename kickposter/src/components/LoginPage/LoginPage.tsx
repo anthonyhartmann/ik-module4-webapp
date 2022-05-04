@@ -15,6 +15,11 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
   const [usernameInput, setUsernameInput] = React.useState<string>("")
   const [passwordInput, setPasswordInput] = React.useState<string>("")
 
+  /*
+  const [timesSinceLastAttempt, setsTimesSinceLastAttempt] = React.useState<Map<string, number>>(new Map())
+  const minSlowdown = 5000
+  */
+
 
   function handleUsernameChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setUsernameInput(event.target.value)
@@ -22,10 +27,29 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
 
   function handlePasswordChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setPasswordInput(event.target.value)
-  } 
+  }
+
+  /*
+  function rateLimit(username: string) {
+    const timeAtAttempt = Date.now()
+    const lastAttemptTime = timesSinceLastAttempt.get(username)
+    setsTimesSinceLastAttempt(new Map(timesSinceLastAttempt.set(username, timeAtAttempt)))
+    console.log(timeAtAttempt)
+    console.log(lastAttemptTime)
+    if (lastAttemptTime && timeAtAttempt - lastAttemptTime < minSlowdown) {
+      return true
+    }
+  }
+  */
 
   function handleFormSubmit(event: { preventDefault: () => void; }) {
     event.preventDefault()
+    /*
+    if (rateLimit(usernameInput)) {
+      setUsernameError("You need to wait longer before attempting again!")
+      return
+    }
+    */
     setUsernameError("")
     setPasswordError("")
     if (!usernameInput) {
