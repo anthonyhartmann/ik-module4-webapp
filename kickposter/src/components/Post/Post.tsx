@@ -18,7 +18,7 @@ const PostBox: React.FC<Post> = (post: Post) => {
       <p>{post.text}</p>
       {/*
       <p>
-        <Likes count={post.likeCount} />
+        <Likes count={post.likeCount} postId={post.id}/>
       </p>
      */}
     </div>
