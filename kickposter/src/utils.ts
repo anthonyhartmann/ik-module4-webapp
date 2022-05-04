@@ -19,6 +19,7 @@ const createPost = (id: number, author: string, text: string): Post => {
     author,
     text,
     when: new Date(Now.getTime() - Math.random() * 1000 * 60 * 60 * 24 * 2),
+    likeCount: Math.floor(Math.random() * 250),
   };
 };
 

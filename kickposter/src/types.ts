@@ -3,4 +3,5 @@ export type Post = {
   author: string;
   text: string;
   when: Date;
+  likeCount: number;
 };
