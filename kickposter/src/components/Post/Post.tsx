@@ -8,6 +8,9 @@ const PostBox: React.FC<Post> = (post: Post) => {
   return (
     <div className="Post" key={post.id}>
       <p>
+        <p>
+          #{post.id} 
+        </p>
         From @
         <span style={{ color: "dodgerblue", fontWeight: "bold" }}>
           {post.author}

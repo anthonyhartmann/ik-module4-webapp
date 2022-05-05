@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./PostsContainer.css";
 import PostBox from "../Post/Post";
 import { Post } from "../../types";
-import { loadMoreData } from "../../utils";
+import { loadMoreData, createPost } from "../../utils";
+//import Cookies from 'js-cookie';
 import EventsTester from "../EventsTesterContainer/EventsTesterContainer";
 
 const PostsContainer: React.FC = () => {
@@ -11,6 +12,13 @@ const PostsContainer: React.FC = () => {
   );
 
   useEffect(() => {
+    /*
+    const scrollPos = Cookies.get("scrollPosition")
+    if (scrollPos) {
+      window.scrollTo(0, parseInt(scrollPos))
+    }
+    window.addEventListener("scroll", updateScrollCookie);
+    */
     window.addEventListener("scroll", hasScrolledToBottomOfPage);
     // window.addEventListener("scroll", logWhenScrolling)
     // if we had used window.onscroll we could've wiped out someone else using the same function, so using
@@ -22,6 +30,12 @@ const PostsContainer: React.FC = () => {
     };
   });
 
+  /*
+  function updateScrollCookie() {
+    document.cookie = `scrollPosition=${window.pageYOffset};max-age=604800`
+  }
+  */
+
   const logWhenScrolling = () => {
     console.log("I got a scroll event!");
   };
@@ -32,7 +46,6 @@ const PostsContainer: React.FC = () => {
       window.innerHeight + window.pageYOffset >=
       document.body.offsetHeight - closeToBottomBuffer
     ) {
-      console.log("At bottom of page");
       loadMoreData();
       setPosts(JSON.parse(localStorage.getItem("posts")!!));
     }
@@ -43,6 +56,18 @@ const PostsContainer: React.FC = () => {
     return <PostBox {...post} key={post.id} />;
   });
 
+  /*
+  function getFeedName() {
+    return localStorage.getItem("feedname")
+  }
+
+  return (
+    <div className="Posts-container">
+      <div className="Posts-title">{getFeedName() ?? "Your feed"}</div>
+      {postElements}
+    </div>
+  );
+  */
   return (
     <div className="Posts-container">
       <div className="Posts-title">Your feed</div>
