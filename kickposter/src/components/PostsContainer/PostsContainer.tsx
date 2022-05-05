@@ -22,7 +22,7 @@ const PostsContainer: React.FC = () => {
     window.addEventListener("scroll", hasScrolledToBottomOfPage);
     // window.addEventListener("scroll", logWhenScrolling)
     // if we had used window.onscroll we could've wiped out someone else using the same function, so using
-    // add/remove event listener ensure s we keep ourselves encapsulated
+    // add/remove event listener ensures we keep ourselves encapsulated
 
     return () => {
       window.removeEventListener("scroll", hasScrolledToBottomOfPage);
