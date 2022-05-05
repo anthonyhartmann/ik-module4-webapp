@@ -4,9 +4,10 @@ import PostBox from "../Post/Post";
 import { Post } from "../../types";
 import { loadMoreData, createPost } from "../../utils";
 //import Cookies from 'js-cookie';
+import EventsTester from "../EventsTesterContainer/EventsTesterContainer";
 
 const PostsContainer: React.FC = () => {
-  const [posts, setPosts] = useState<Array<ReturnType<typeof createPost>>>(
+  const [posts, setPosts] = useState<Array<Post>>(
     JSON.parse(localStorage.getItem("posts")!!)
   );
 
@@ -18,9 +19,14 @@ const PostsContainer: React.FC = () => {
     }
     window.addEventListener("scroll", updateScrollCookie);
     */
-    window.addEventListener("scroll", HasScrolledToBottomOfPage);
+    window.addEventListener("scroll", hasScrolledToBottomOfPage);
+    // window.addEventListener("scroll", logWhenScrolling)
+    // if we had used window.onscroll we could've wiped out someone else using the same function, so using
+    // add/remove event listener ensure s we keep ourselves encapsulated
+
     return () => {
-      window.removeEventListener("scroll", HasScrolledToBottomOfPage);
+      window.removeEventListener("scroll", hasScrolledToBottomOfPage);
+      //window.removeEventListener("scroll", logWhenScrolling);
     };
   });
 
@@ -30,7 +36,11 @@ const PostsContainer: React.FC = () => {
   }
   */
 
-  function HasScrolledToBottomOfPage(event: Event) {
+  const logWhenScrolling = () => {
+    console.log("I got a scroll event!");
+  };
+
+  const hasScrolledToBottomOfPage = (event: Event) => {
     const closeToBottomBuffer = 20;
     if (
       window.innerHeight + window.pageYOffset >=
@@ -39,11 +49,12 @@ const PostsContainer: React.FC = () => {
       loadMoreData();
       setPosts(JSON.parse(localStorage.getItem("posts")!!));
     }
-  }
+  };
 
-  const postElements = posts.map((post: Post) => (
-    <PostBox {...post} key={post.id} />
-  ));
+  const postElements = posts.map((post: Post) => {
+    post.when = new Date(post.when);
+    return <PostBox {...post} key={post.id} />;
+  });
 
   /*
   function getFeedName() {
@@ -60,6 +71,7 @@ const PostsContainer: React.FC = () => {
   return (
     <div className="Posts-container">
       <div className="Posts-title">Your feed</div>
+      {/* <EventsTester /> */}
       {postElements}
     </div>
   );

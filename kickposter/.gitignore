@@ -11,6 +11,9 @@
 # production
 /build
 
+# auth
+src/components/UserSidebar/DriveExaminer/credentials.json
+
 # misc
 .DS_Store
 .env.local

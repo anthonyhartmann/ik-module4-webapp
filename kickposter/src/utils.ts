@@ -11,8 +11,16 @@ const postsBodies = [
   "Laoreet id donec ultrices tincidunt. A arcu cursus vitae congue mauris rhoncus.",
 ];
 
-export const createPost = (id: number, author: string, text: string) => {
-  return { id, author, text };
+const Now = new Date();
+
+const createPost = (id: number, author: string, text: string): Post => {
+  return {
+    id,
+    author,
+    text,
+    when: new Date(Now.getTime() - Math.random() * 1000 * 60 * 60 * 24 * 2),
+    likeCount: Math.floor(Math.random() * 250),
+  };
 };
 
 const posts: Post[] = authors.map((author, idx) =>
@@ -32,9 +40,7 @@ export const getLoggedInUser = function () {
 };
 
 export const loadMoreData = () => {
-  let currentPosts: Array<ReturnType<typeof createPost>> = JSON.parse(
-    localStorage.getItem("posts")!!
-  );
+  let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
   let currentCount = currentPosts.length;
   currentPosts.push(
     createPost(
