@@ -1,3 +1,4 @@
+import { create } from "domain";
 import { Post, User } from "./types";
 
 const authors = ["ruby", "opal", "onyx", "emerald", "pyrite", "gold", "silver"];
@@ -38,6 +39,24 @@ export const getLoggedInUser = function () {
   const usersDeserialized: User[] = JSON.parse(users!!)
   return usersDeserialized.find((user) => user.loggedIn)
 };
+
+export const startWebSocket = function () {
+  const ws = new WebSocket('wss://socketsbay.com/wss/v2/2/demo/')
+  ws.onmessage = (e) => {
+    const text = e.data
+    if (text.startsWith("IKPROJ")) {
+      let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
+      currentPosts.unshift(
+        createPost(
+          -1,
+          "websocket",
+          text
+        )
+      )
+      localStorage.setItem("posts", JSON.stringify(currentPosts));
+    }
+  }
+}
 
 export const loadMoreData = () => {
   let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
