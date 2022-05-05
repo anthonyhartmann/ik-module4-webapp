@@ -40,11 +40,12 @@ export const getLoggedInUser = function () {
   return usersDeserialized.find((user) => user.loggedIn)
 };
 
+/*
 export const startWebSocket = function () {
   const ws = new WebSocket('wss://socketsbay.com/wss/v2/2/demo/')
   ws.onmessage = (e) => {
     const text = e.data
-    if (text.startsWith("IKPROJ")) {
+    if (text == "IKPROJ Test!")) {
       let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
       currentPosts.unshift(
         createPost(
@@ -57,6 +58,7 @@ export const startWebSocket = function () {
     }
   }
 }
+*/
 
 export const loadMoreData = () => {
   let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
