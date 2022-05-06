@@ -6,7 +6,7 @@ import "./Post.css";
 const PostBox: React.FC<Post> = (post: Post) => {
   return (
     <div className="Post" key={post.id}>
-      <p>
+      <div>
         <p>
           #{post.id} 
         </p>
@@ -15,7 +15,7 @@ const PostBox: React.FC<Post> = (post: Post) => {
           {post.author}
         </span>
         <TimeSince date={post.when} />
-      </p>
+      </div>
       <p></p>
       <p>{post.text}</p>
     </div>
