@@ -35,26 +35,7 @@ const SignUpPage: React.FC<SignUpProps> = (props: SignUpProps) => {
       setPasswordError("Password is missing!")
       return
     }
-
-    /*
-    if (!passwordInput.match("(?=.*?[A-Z])")) {
-      setPasswordError("Your password needs at least one capital letter.")
-      return
-    } else if (!passwordInput.match("(?=.*?[a-z])")) {
-      setPasswordError("Your password needs at least one lowercase letter.")
-      return
-    } else if (!passwordInput.match("(?=.*?[0-9])")) {
-      setPasswordError("Your password needs at least one number.")
-      return
-    } else if (!passwordInput.match("(?=.*?[#?!@$%^&*-])")) {
-      setPasswordError("Your password needs at least one special character.")
-      return
-    } else if (!(passwordInput.length > 8)) {
-      setPasswordError("Your password needs at least 8 characters.")
-      return
-    }
-    */
-
+    
     const users = localStorage.getItem("users")
     const usersDeserialized: User[] = users ? JSON.parse(users!!) : []
     usersDeserialized.push({

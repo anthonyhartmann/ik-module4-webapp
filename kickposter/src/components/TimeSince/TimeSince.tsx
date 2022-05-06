@@ -105,15 +105,4 @@ const TimeSince: React.FC<Props> = (props) => {
   return <span className="TimeSince">•{formatedMs(ms)}•</span>;
 };
 
-export const TimeSinceWebComponent: React.FC<Props> = (props) => {
-  return (
-    <span className="TimeSince">
-      {/* getting time-ago to properly work in typescript is a bit difficult - for now we're ts-ignoring the
-          issue as the component itself works, but typescript doesn't understand the datetime prop */}
-      {/* @ts-ignore */}•
-      <time-ago datetime={props.date.toISOString()}></time-ago>•
-    </span>
-  );
-};
-
 export default TimeSince;

@@ -14,7 +14,7 @@ const postsBodies = [
 
 const Now = new Date();
 
-const createPost = (id: number, author: string, text: string): Post => {
+export const createPost = (id: number, author: string, text: string): Post => {
   return {
     id,
     author,
@@ -40,25 +40,27 @@ export const getLoggedInUser = function () {
   return usersDeserialized.find((user) => user.loggedIn)
 };
 
-/*
-export const startWebSocket = function () {
+
+export const startWebSocket = function (triggerRerender: () => void) {
   const ws = new WebSocket('wss://socketsbay.com/wss/v2/2/demo/')
   ws.onmessage = (e) => {
     const text = e.data
-    if (text == "IKPROJ Test!")) {
-      let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
+    console.log("Recieved message!")
+    if (text == "IKPROJ Test!") {
+      const currentPosts: Post[] = JSON.parse(localStorage.getItem("posts")!!);
+      let nextId = Math.max(...currentPosts.map((post) => post.id))
       currentPosts.unshift(
         createPost(
-          -1,
+          nextId + 1,
           "websocket",
-          text
+          text + " " + (nextId + 1).toString()
         )
       )
       localStorage.setItem("posts", JSON.stringify(currentPosts));
+      triggerRerender()
     }
   }
 }
-*/
 
 export const loadMoreData = () => {
   let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);

@@ -1,7 +1,6 @@
 import "./App.css";
 import UserSidebar from "./components/UserSidebar/UserSidebar";
 import PostsContainer from "./components/PostsContainer/PostsContainer";
-//import { getLoggedInUser, loadInitialData, startWebSocket } from "./utils";
 import { getLoggedInUser, loadInitialData } from "./utils";
 import { useState } from "react";
 import LoginPage from "./components/LoginPage/LoginPage";
@@ -10,7 +9,6 @@ import { User } from "./types";
 
 function App() {
   loadInitialData();
-  //const webSocket = startWebSocket()
   const currentUser: User | null = getLoggedInUser() ?? null
   const [user, setUser] = useState<User | null>(currentUser)
   const [registering, setRegistering] = useState<boolean>(false)

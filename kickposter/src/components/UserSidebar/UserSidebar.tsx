@@ -17,18 +17,7 @@ const UserSidebar: React.FC<UserSidebarProps> = (props: UserSidebarProps) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  /*
-  return (
-    <div className="User-sidebar">
-      <TransparentLogo className="logo" />
-      <div className="Sidebar-item">Hi {props.user.username}!</div>
-      <div className="Sidebar-item-link" onClick={() => setShowSettings(!showSettings)}>Settings</div>
-      {showSettings && <Settings/>}
-      <div className="Sidebar-item-link" onClick={props.handleLogout}>Log Out</div>
-      <DriveExaminer/>
-    </div>
-  );
-  */
+  
   return (
     <div className="User-sidebar">
       <TransparentLogo className="logo" />

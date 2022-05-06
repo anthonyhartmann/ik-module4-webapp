@@ -1,7 +1,6 @@
 import React from "react";
 import { Post } from "../../types";
-//import Likes from "../Likes/Likes";
-import TimeSince, { TimeSinceWebComponent } from "../TimeSince/TimeSince";
+import TimeSince from "../TimeSince/TimeSince";
 import "./Post.css";
 
 const PostBox: React.FC<Post> = (post: Post) => {
@@ -15,15 +14,10 @@ const PostBox: React.FC<Post> = (post: Post) => {
         <span style={{ color: "dodgerblue", fontWeight: "bold" }}>
           {post.author}
         </span>
-        <TimeSinceWebComponent date={post.when} />
+        <TimeSince date={post.when} />
       </p>
       <p></p>
       <p>{post.text}</p>
-      {/*
-      <p>
-        <Likes count={post.likeCount} postId={post.id}/>
-      </p>
-     */}
     </div>
   );
 };
