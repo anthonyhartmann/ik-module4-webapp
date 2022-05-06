@@ -32,6 +32,9 @@ export const loadInitialData = function () {
   if (!localStorage.getItem("posts")) {
     localStorage.setItem("posts", JSON.stringify(posts));
   }
+  if (!localStorage.getItem("users")) {
+    localStorage.setItem("users", JSON.stringify([]));
+  }
 };
 
 export const getLoggedInUser = function () {
@@ -40,27 +43,6 @@ export const getLoggedInUser = function () {
   return usersDeserialized.find((user) => user.loggedIn)
 };
 
-
-export const startWebSocket = function (triggerRerender: () => void) {
-  const ws = new WebSocket('wss://socketsbay.com/wss/v2/2/demo/')
-  ws.onmessage = (e) => {
-    const text = e.data
-    console.log("Recieved message!")
-    if (text == "IKPROJ Test!") {
-      const currentPosts: Post[] = JSON.parse(localStorage.getItem("posts")!!);
-      let nextId = Math.max(...currentPosts.map((post) => post.id))
-      currentPosts.unshift(
-        createPost(
-          nextId + 1,
-          "websocket",
-          text + " " + (nextId + 1).toString()
-        )
-      )
-      localStorage.setItem("posts", JSON.stringify(currentPosts));
-      triggerRerender()
-    }
-  }
-}
 
 export const loadMoreData = () => {
   let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
