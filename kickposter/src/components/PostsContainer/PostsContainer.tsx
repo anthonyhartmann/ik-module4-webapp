@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./PostsContainer.css";
 import PostBox from "../Post/Post";
 import { Post } from "../../types";
+import EventsTesterContainer from "../EventsTester/EventsTesterContainer";
 import { loadMoreData } from "../../utils";
 import Cookies from 'js-cookie';
 
@@ -50,14 +51,24 @@ const PostsContainer: React.FC<PostContainerProps> = (props: PostContainerProps)
     return localStorage.getItem("feedname")
   }
 
+  
+  useEffect(() => {
+    /* Infinite scrolling example! Anything put here will be run once on each load. 
+       For reference, you can compare your position on the page with
+       window.innerHeight + window.pageYOffset, and the pixel position of the bottom
+       of the page with document.body.offsetHeight.
+    */
+  });
+
   const postElements = posts.map((post: Post) => {
     post.when = new Date(post.when);
     return <PostBox {...post} key={post.id} />;
   });
-  
+
   return (
     <div className="Posts-container">
-      <div className="Posts-title">{getFeedName() ? getFeedName() : "Your feed"}</div>
+      <div className="Posts-title">{getFeedName() ? getFeedName() : "Your feed"}
+      {/*</EventsTesterContainer/>*/}
       {postElements}
     </div>
   );

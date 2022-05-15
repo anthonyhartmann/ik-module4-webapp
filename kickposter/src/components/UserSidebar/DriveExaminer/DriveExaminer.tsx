@@ -1,6 +1,10 @@
 import { gapi } from "gapi-script"
 import React, { useState } from "react"
 import './DriveExaminer.css'
+// This in-class example used credentials for a personal Google Drive Cloud instance that was
+// set up specifically for it! If you wanted to try it yourself, there's an excellent guide here: 
+// https://developers.google.com/drive/api/quickstart/nodejs
+// For this branch these credentials are left blank.
 import credentials from './credentials.json'
 
 const DriveExaminer: React.FC = () => {
