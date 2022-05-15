@@ -18,6 +18,9 @@ const PostBox: React.FC<Post> = (post: Post) => {
       </div>
       <p></p>
       <p>{post.text}</p>
+      {/* This is where the Likes example would go! 
+        This will be implemented by the instructor, 
+        but feel free to try on your own! */}
     </div>
   );
 };

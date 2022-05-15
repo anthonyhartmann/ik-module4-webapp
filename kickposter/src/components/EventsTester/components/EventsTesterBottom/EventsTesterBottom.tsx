@@ -21,7 +21,7 @@ const EventsTesterBottom: React.FC = () => {
 
   const onLeftClick = (event: Event) => {
     console.log("Left Clicking on Bottom");
-    // Why doens't this event appear?
+    // Why dosen't this event appear?
   };
 
   const onRightClick = (event: Event) => {

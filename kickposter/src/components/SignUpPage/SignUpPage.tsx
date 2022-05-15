@@ -15,6 +15,10 @@ const SignUpPage: React.FC<SignUpProps> = (props: SignUpProps) => {
   const [usernameInput, setUsernameInput] = React.useState<string>("")
   const [passwordInput, setPasswordInput] = React.useState<string>("")
 
+  // This could be used, somehow... Fun fact: the set function that comes with React state variables
+  // has to be used in order to update the variable, so just using set on a map won't update it properly.
+  const [timesSinceLastAttempt, setTimesSinceLastAttempt] = React.useState<Map<string, number>>(new Map())
+
 
   function handleUsernameChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setUsernameInput(event.target.value)

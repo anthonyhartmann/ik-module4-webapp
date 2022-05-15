@@ -36,6 +36,7 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
       setPasswordError("Password is missing!")
       return
     }
+    /* TODO: should probably add some restriction to these passwords. */
     const users = localStorage.getItem("users")
     const usersDeserialized: User[] = users ? JSON.parse(users!!) : []
     const dbUser: User | undefined = usersDeserialized.find((user) => {return user.username == usernameInput})

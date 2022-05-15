@@ -31,7 +31,7 @@ const EventsTesterContainer: React.FC = () => {
   };
   const onRightClick = (event: Event) => {
     console.log("onRightClick Click at Container");
-    // Why doesn't this event appear?
+    // Why dosen't this event appear?
   };
 
   return (
