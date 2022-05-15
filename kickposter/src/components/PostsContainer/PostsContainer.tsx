@@ -2,11 +2,53 @@ import React, { useEffect, useState } from "react";
 import "./PostsContainer.css";
 import PostBox from "../Post/Post";
 import { Post } from "../../types";
+import { loadMoreData } from "../../utils";
+import Cookies from 'js-cookie';
 
-const PostsContainer: React.FC = () => {
+interface PostContainerProps {
+  webSocketUpdated: boolean
+}
+
+const PostsContainer: React.FC<PostContainerProps> = (props: PostContainerProps) => {
   const [posts, setPosts] = useState<Array<Post>>(
     JSON.parse(localStorage.getItem("posts")!!)
   );
+  
+  useEffect(() => {
+    setPosts(JSON.parse(localStorage.getItem("posts")!!))
+  }, [props.webSocketUpdated])
+
+  useEffect(() => {
+    const scrollPos = Cookies.get("scrollPosition")
+    if (scrollPos) {
+      window.scrollTo(0, parseInt(scrollPos))
+    }
+    window.addEventListener("scroll", hasScrolledToBottomOfPage)
+    window.addEventListener("scroll", updateScrollCookie)
+
+    return () => {
+      window.removeEventListener("scroll", hasScrolledToBottomOfPage)
+    }
+  })
+
+  const hasScrolledToBottomOfPage = (event: Event) => {
+    const closeToBottom = 20;
+    if (
+      window.innerHeight + window.pageYOffset >= 
+      document.body.offsetHeight - closeToBottom
+    ) {
+      loadMoreData();
+      setPosts(JSON.parse(localStorage.getItem("posts")!!))
+    }
+  }
+
+  function updateScrollCookie() {
+    document.cookie = `scrollPosition=${window.pageYOffset};max-age=604800`
+  }
+
+  function getFeedName() {
+    return localStorage.getItem("feedname")
+  }
 
   const postElements = posts.map((post: Post) => {
     post.when = new Date(post.when);
@@ -15,7 +57,7 @@ const PostsContainer: React.FC = () => {
   
   return (
     <div className="Posts-container">
-      <div className="Posts-title">Your feed</div>
+      <div className="Posts-title">{getFeedName() ? getFeedName() : "Your feed"}</div>
       {postElements}
     </div>
   );

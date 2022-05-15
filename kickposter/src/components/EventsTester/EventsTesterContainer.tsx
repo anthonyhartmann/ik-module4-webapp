@@ -24,10 +24,9 @@ const EventsTesterContainer: React.FC = () => {
 
   const onCapture = (event: Event) => {
     console.log("Capturing Click at container");
-    event.stopPropagation();
   };
   const onBubble = (event: Event) => {
-    alert("We shouldn't be bubbling, we stopped at capture");
+    console.log("successful bubble!")
   };
   const onRightClick = (event: Event) => {
     console.log("onRightClick Click at Container");

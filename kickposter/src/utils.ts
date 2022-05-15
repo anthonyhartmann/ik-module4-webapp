@@ -70,3 +70,23 @@ export const loadMoreData = () => {
   );
   localStorage.setItem("posts", JSON.stringify(currentPosts));
 };
+
+export const startWebSocket = (triggerRerender: () => void) => {
+  const ws = new WebSocket('wss://socketsbay.com/wss/v2/2/demo/')
+  ws.onmessage = (e) => {
+    const text = e.data
+    if (text == "IK Test!") {
+      const currentPosts: Post[] = JSON.parse(localStorage.getItem("posts")!!)
+      let nextId = Math.max(...currentPosts.map((post) => post.id)) + 1
+      currentPosts.unshift(
+        createPost(
+          nextId,
+          "websocket",
+          text + " " + nextId.toString()
+        )
+      )
+      localStorage.setItem("posts", JSON.stringify(currentPosts))
+      triggerRerender()
+    }
+  }
+}

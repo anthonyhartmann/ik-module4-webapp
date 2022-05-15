@@ -25,6 +25,7 @@ const UserSidebar: React.FC<UserSidebarProps> = (props: UserSidebarProps) => {
       <div className="Sidebar-item-link" onClick={() => setShowSettings(!showSettings)}>Settings</div>
       {showSettings && <Settings/>}
       <div className="Sidebar-item-link" onClick={props.handleLogout}>Log Out</div>
+      <DriveExaminer/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import "./App.css";
 import UserSidebar from "./components/UserSidebar/UserSidebar";
 import PostsContainer from "./components/PostsContainer/PostsContainer";
-import { getLoggedInUser, loadInitialData } from "./utils";
+import { getLoggedInUser, loadInitialData, startWebSocket } from "./utils";
 import { useState } from "react";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
@@ -12,7 +12,9 @@ function App() {
   const currentUser: User | null = getLoggedInUser() ?? null
   const [user, setUser] = useState<User | null>(currentUser)
   const [registering, setRegistering] = useState<boolean>(false)
+  const [webSocketUpdated, setWebSocketUpdated] = useState<boolean>(false)
   
+  startWebSocket(() => setWebSocketUpdated(true))
   function handleLogout() {
     const users = localStorage.getItem("users")
     const usersDeserialized: User[] = users ? JSON.parse(users!!) : []
@@ -31,7 +33,7 @@ function App() {
       {user && 
         <UserSidebar handleLogout = {handleLogout} user = {user}/>}
       {user &&
-        <PostsContainer/>}
+        <PostsContainer webSocketUpdated={webSocketUpdated} />}
         
     </div>
   );

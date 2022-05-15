@@ -14,7 +14,8 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
 
   const [usernameInput, setUsernameInput] = React.useState<string>("")
   const [passwordInput, setPasswordInput] = React.useState<string>("")
-
+  const [timesSinceLastAttempt, setTimesSinceLastAttempt] = React.useState<Map<string, number>>(new Map())
+  const minSlowdown = 3000
 
   function handleUsernameChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setUsernameInput(event.target.value)
@@ -22,6 +23,16 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
 
   function handlePasswordChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setPasswordInput(event.target.value)
+  }
+
+  function rateLimit(username: string) {
+    const timeAtAttempt = Date.now()
+    const lastAttemptTime = timesSinceLastAttempt.get(username)
+    if (lastAttemptTime && timeAtAttempt - lastAttemptTime < 3000) {
+      return true
+    }
+    setTimesSinceLastAttempt(new Map(timesSinceLastAttempt.set(username, timeAtAttempt)))
+    return false
   }
 
 
@@ -36,6 +47,12 @@ const LoginPage: React.FC<LoginProps> = (props: LoginProps) => {
       setPasswordError("Password is missing!")
       return
     }
+
+    if (rateLimit(usernameInput)) {
+      setUsernameError("Too many attempts, try again later")
+      return
+    }
+    
     const users = localStorage.getItem("users")
     const usersDeserialized: User[] = users ? JSON.parse(users!!) : []
     const dbUser: User | undefined = usersDeserialized.find((user) => {return user.username == usernameInput})

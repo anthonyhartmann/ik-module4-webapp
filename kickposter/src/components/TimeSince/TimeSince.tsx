@@ -102,7 +102,16 @@ type Props = {
 
 const TimeSince: React.FC<Props> = (props) => {
   const ms = props.date.getTime() - new Date().getTime();
-  return <span className="TimeSince">•{formatedMs(ms)}•</span>;
+  return <span className="TimeSince">•  {formatedMs(ms)}•</span>;
 };
+
+export const TimeSinceWebComponent: React.FC<Props> = (props: Props) => {
+  return (
+    <span className="TimeSince">
+      {/* @ts-ignore */}
+      <time-ago datetime={props.date.toISOString()}/>
+    </span>
+  )
+}
 
 export default TimeSince;
