@@ -37,7 +37,6 @@ const SignUpPage: React.FC<SignUpProps> = (props: SignUpProps) => {
     }
 
     if (!passwordInput.match(("(?=.*?[A-Z])"))) {
-      console.log("password wrong")
       setPasswordError("Your password needs at least one capital letter!")
       return
     } else if (!(passwordInput.length > 8)) {
