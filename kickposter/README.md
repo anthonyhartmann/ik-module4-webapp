@@ -1,46 +1,34 @@
-# Getting Started with Create React App
+# ik-module4-webapp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web app created for educational purposes. It is used in module 4 of Interview Kickstart's full stack curriculum.
 
-## Available Scripts
+<img width="1439" alt="Screen Shot 2022-04-30 at 10 51 49 PM" src="https://user-images.githubusercontent.com/23429365/166134032-63a352f3-ff27-4cd6-8f47-f911eae41efc.png">
 
-In the project directory, you can run:
+# Prerequisites
+Node.js (v14.15.1) https://nodejs.org/en/download/
 
-### `npm start`
+# Basic Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone this repo using git clone.
+2. cd ik-module4-webapp/kickposter
+3. npm install
+4. npm run start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Steps to set up the Drive Examiner example
 
-### `npm test`
+One of the examples present in this project is contained within the "Drive Examiner" file, and shows off the oAuth2 integration pathway. In order to set this up, you'll need to create a Google Cloud project. Guides are available in the Google Developers documentation, but the steps to set it up for this project in particular are as follows.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Signing into https://console.cloud.google.com/, create a new project with a preferred name.
+2. Once the project is created, open the left sidebar, and select "Enabled APIs and Services". Then, search for the Google Drive API, and enable it.
+3. In the top, you'll be presented with a prompt to "Create Credentials". Click this to begin creating the credentials for your project.
+4. Under "Credential Type", select "User Data".
+5. Add the desired name and contact email (these would be viewable by students during a demo).
+6. For scopes, you'll only need to enable the ".../auth/drive.metadata" scope for the Google Drive API.
+7. Fill in whatever desired client ID for the OAuth Client ID, select "Web Application" under Application Type, and add "http://localhost:3000" to the authorized JavaScript origins. After hitting create, you'll get an option to download your credentials. Download them, and make a note of the client ID.
+9. Back on the credentials page for your project, create an API key via the "+ Create Credentials" button. This will create a new API key.
+10. As a last step, select "OAuth Consent Screen" via the left sidebar, and add yourself via email as a "Test User" to the screen. This will allow you to use the app without needing to publish it fully.
+11. Finally, using the client id as "CLIENT_ID" and the API key as "API_KEY", fill in the credentials.json file to make use of the Drive Examiner.
 
-### `npm run build`
+# How to run the Web Sockets example.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The web sockets example uses a website at https://socketsbay.com/test-websockets. When you've enabled the web socket connection to begin on start-up in your example, you'll be able to run the example by first clicking "Connect" on this page, and then typing whatever message you specified to pass your filter (e.g. "IKPROJ Test!") into the chat on the site! Note that due to the nature of the site as an echo communication and being 2 way, the app will populate with two copies of any message.
