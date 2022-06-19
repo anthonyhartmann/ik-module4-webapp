@@ -28,3 +28,7 @@ One of the examples present in this project is contained within the "Drive Exami
 9. Back on the credentials page for your project, create an API key via the "+ Create Credentials" button. This will create a new API key.
 10. As a last step, select "OAuth Consent Screen" via the left sidebar, and add yourself via email as a "Test User" to the screen. This will allow you to use the app without needing to publish it fully.
 11. Finally, using the client id as "CLIENT_ID" and the API key as "API_KEY", fill in the credentials.json file to make use of the Drive Examiner.
+
+# How to run the Web Sockets example.
+
+The web sockets example uses a website at https://socketsbay.com/test-websockets. When you've enabled the web socket connection to begin on start-up in your example, you'll be able to run the example by first clicking "Connect" on this page, and then typing whatever message you specified to pass your filter (e.g. "IKPROJ Test!") into the chat on the site. Note that this site is publicly accessible, so anyone could send anything to this chatbox and it would populate. It's unlikely that any offensive content would be posted here, but it's worth speeding through any time spent here!
