@@ -8,6 +8,7 @@ type CustomElement<T> = Partial<T & DOMAttributes<T> & { children: any }>;
 declare global {
   namespace JSX {
     interface IntrinsicElements {
+      // @ts-ignore
       ["time-ago"]: CustomElement<TimeAgoElement>;
     }
   }
@@ -105,7 +106,7 @@ const TimeSince: React.FC<Props> = (props) => {
     This is where our time since component would go! But for now, it's just an empty div.
     This example will be done by the instructor, but feel free to try it out on your own.
   */
-  return <div></div>
+  return <div></div>;
 };
 
 const TimeSinceWebComponent: React.FC<Props> = (props) => {
@@ -113,7 +114,7 @@ const TimeSinceWebComponent: React.FC<Props> = (props) => {
     Same as above, this would be a TimeSince component, but as an import.
     For now though, nothing here!
   */
-  return <div></div>
+  return <div></div>;
 };
 
 export default TimeSince;

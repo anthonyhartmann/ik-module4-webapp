@@ -14,18 +14,25 @@ const postsBodies = [
 
 const Now = new Date();
 
-export const createPost = (id: number, author: string, text: string): Post => {
-  return {
+export const createPost = (
+  id: number,
+  author: string,
+  text: string
+): Post[] => {
+  let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
+  currentPosts.push({
     id,
     author,
     text,
     when: new Date(Now.getTime() - Math.random() * 1000 * 60 * 60 * 24 * 2),
     likeCount: Math.floor(Math.random() * 250),
-  };
+  });
+  localStorage.setItem("posts", JSON.stringify(currentPosts));
+  return currentPosts;
 };
 
-const posts: Post[] = authors.map((author, idx) =>
-  createPost(idx, author, postsBodies[idx])
+const posts: Post[] = authors.map(
+  (author, idx) => createPost(idx, author, postsBodies[idx])[-1]
 );
 
 export const loadInitialData = function () {
@@ -38,35 +45,27 @@ export const loadInitialData = function () {
 };
 
 export const getLoggedInUser = function () {
-  const users = localStorage.getItem("users")
-  const usersDeserialized: User[] = JSON.parse(users!!)
-  return usersDeserialized.find((user) => user.loggedIn)
+  const users = localStorage.getItem("users");
+  const usersDeserialized: User[] = JSON.parse(users!!);
+  return usersDeserialized.find((user) => user.loggedIn);
 };
-
 
 export const loadMoreData = () => {
   let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
   let currentCount = currentPosts.length;
-  currentPosts.push(
-    createPost(
-      currentCount,
-      authors[(authors.length * Math.random()) | 0],
-      postsBodies[(postsBodies.length * Math.random()) | 0]
-    )
+  createPost(
+    currentCount,
+    authors[(authors.length * Math.random()) | 0],
+    postsBodies[(postsBodies.length * Math.random()) | 0]
   );
-  currentPosts.push(
-    createPost(
-      currentCount + 1,
-      authors[(authors.length * Math.random()) | 0],
-      postsBodies[(postsBodies.length * Math.random()) | 0]
-    )
+  createPost(
+    currentCount + 1,
+    authors[(authors.length * Math.random()) | 0],
+    postsBodies[(postsBodies.length * Math.random()) | 0]
   );
-  currentPosts.push(
-    createPost(
-      currentCount + 2,
-      authors[(authors.length * Math.random()) | 0],
-      postsBodies[(postsBodies.length * Math.random()) | 0]
-    )
+  return createPost(
+    currentCount + 2,
+    authors[(authors.length * Math.random()) | 0],
+    postsBodies[(postsBodies.length * Math.random()) | 0]
   );
-  localStorage.setItem("posts", JSON.stringify(currentPosts));
 };
