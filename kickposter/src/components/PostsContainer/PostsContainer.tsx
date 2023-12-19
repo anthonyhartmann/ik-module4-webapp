@@ -4,9 +4,9 @@ import PostBox from "../Post/Post";
 import { Post } from "../../types";
 import EventsTesterContainer from "../EventsTester/EventsTesterContainer";
 // This library lets you get and set cookies using Cookies.set(k, v) and Cookies.get.
-// You may need to look up some more information to find out how to make them stay between 
+// You may need to look up some more information to find out how to make them stay between
 // sessions though...
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const PostsContainer: React.FC = () => {
   /* For future reference, a cookie can be set by setting document.cookie equal to
@@ -18,7 +18,6 @@ const PostsContainer: React.FC = () => {
     JSON.parse(localStorage.getItem("posts")!!)
   );
 
-  
   useEffect(() => {
     /* Infinite scrolling example! Anything put here will be run once on each load. 
        For reference, you can compare your position on the page with
@@ -34,15 +33,13 @@ const PostsContainer: React.FC = () => {
 
   return (
     <div className="Posts-container">
-      {
-        /* Currently this feedname is just a string, but you can put 
+      {/* Currently this feedname is just a string, but you can put 
           JavaScript variables into your HTML with brackets like this, 
           if that's ever useful to know.
-        */
-      }
+        */}
       <div className="Posts-title">Your feed</div>
-      {/* Event tester example! Uncomment the EventsTesterContainer below to reveal the events tester.}
-      {/*</EventsTesterContainer/>*/}
+      {/* Event tester example! Uncomment the EventsTesterContainer below to reveal the events tester. */}
+      {/*</EventsTesterContainer>*/}
       {postElements}
     </div>
   );
