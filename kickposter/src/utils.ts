@@ -14,6 +14,14 @@ const postsBodies = [
 
 const Now = new Date();
 
+export const getPostsBackend = () => {
+  return JSON.parse(localStorage.getItem("posts")!!);
+};
+
+export const setPostsBackend = () => {
+  return localStorage.setItem("posts", JSON.stringify(posts));
+};
+
 export const createPost = (id: number, author: string, text: string): Post => {
   return {
     id,
@@ -38,11 +46,10 @@ export const loadInitialData = function () {
 };
 
 export const getLoggedInUser = function () {
-  const users = localStorage.getItem("users")
-  const usersDeserialized: User[] = JSON.parse(users!!)
-  return usersDeserialized.find((user) => user.loggedIn)
+  const users = localStorage.getItem("users");
+  const usersDeserialized: User[] = JSON.parse(users!!);
+  return usersDeserialized.find((user) => user.loggedIn);
 };
-
 
 export const loadMoreData = () => {
   let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
