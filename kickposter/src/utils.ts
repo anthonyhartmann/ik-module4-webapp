@@ -76,4 +76,5 @@ export const loadMoreData = () => {
     )
   );
   localStorage.setItem("posts", JSON.stringify(currentPosts));
+  return currentPosts;
 };
