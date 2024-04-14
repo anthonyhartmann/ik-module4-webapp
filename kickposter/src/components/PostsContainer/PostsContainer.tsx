@@ -6,6 +6,7 @@ import EventsTesterContainer from "../EventsTester/EventsTesterContainer";
 // This library lets you get and set cookies using Cookies.set(k, v) and Cookies.get.
 // You may need to look up some more information to find out how to make them stay between
 // sessions though...
+import Cookies from "js-cookie";
 import { getPostsBackend } from "../../utils";
 
 const PostsContainer: React.FC = () => {
