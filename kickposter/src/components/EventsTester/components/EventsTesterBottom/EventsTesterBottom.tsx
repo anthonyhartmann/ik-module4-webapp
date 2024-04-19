@@ -26,7 +26,9 @@ const EventsTesterBottom: React.FC = () => {
 
   const onRightClick = (event: Event) => {
     console.log("Right Clicking on Bottom");
+    event.preventDefault();
   };
+
   return (
     <div className="EventsTesterBottom" ref={clicker}>
       Events Tester bottom Div

@@ -1,12 +1,12 @@
-import React from "react"
+import React from "react";
 
-type LikeProps = {
-    count: number;
-    postId: number;
-}
+type Props = {
+  count: number;
+  postId: number;
+};
 
-const Likes: React.FC<LikeProps> = (props: LikeProps) => {
-    return <span className="Likes"> &#128157; {props.count}</span>
-}
+const Likes: React.FC<Props> = (props) => {
+  return <span className="Likes">&#128157; {props.count}</span>;
+};
 
 export default Likes;

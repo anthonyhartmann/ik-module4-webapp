@@ -15,11 +15,6 @@ const SignUpPage: React.FC<SignUpProps> = (props: SignUpProps) => {
   const [usernameInput, setUsernameInput] = React.useState<string>("")
   const [passwordInput, setPasswordInput] = React.useState<string>("")
 
-  // This could be used, somehow... Fun fact: the set function that comes with React state variables
-  // has to be used in order to update the variable, so just using set on a map won't update it properly.
-  const [timesSinceLastAttempt, setTimesSinceLastAttempt] = React.useState<Map<string, number>>(new Map())
-
-
   function handleUsernameChange(event: { target: { value: React.SetStateAction<string>; }; }) {
     setUsernameInput(event.target.value)
   }
@@ -40,13 +35,7 @@ const SignUpPage: React.FC<SignUpProps> = (props: SignUpProps) => {
       return
     }
 
-    if (!passwordInput.match(("(?=.*?[A-Z])"))) {
-      setPasswordError("Your password needs at least one capital letter!")
-      return
-    } else if (!(passwordInput.length > 8)) {
-      setPasswordError("Your password needs at least 8 characters.")
-      return
-    }
+    /* TODO: should probably add some restriction to these passwords. */
     
     const users = localStorage.getItem("users")
     const usersDeserialized: User[] = users ? JSON.parse(users!!) : []

@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Settings.css";
 
 const Settings: React.FC = () => {
-  const [feedname, setFeedname] = useState<string>("")
+  const [feedname, setFeedname] = useState<string>("");
 
-  useEffect(() => {
-    localStorage.setItem("feedname", feedname)
-  }, [feedname])
-  
+  const saveFeedName = (event: any) => {
+    setFeedname(event.target.value);
+    localStorage.setItem("feedname", feedname);
+  };
+
   return (
-      <div className="settings">
-        Give your feed a name!
-        <input value={feedname} onChange={(e) => {setFeedname(e.target.value)}}/>
-      </div>
-  )
+    <div className="settings">
+      Give your feed a name!
+      <input value={feedname} onChange={saveFeedName} />
+    </div>
+  );
 };
 
 export default Settings;

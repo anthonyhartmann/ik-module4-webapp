@@ -14,6 +14,14 @@ const postsBodies = [
 
 const Now = new Date();
 
+export const getPostsBackend = () => {
+  return JSON.parse(localStorage.getItem("posts")!!);
+};
+
+export const setPostsBackend = () => {
+  return localStorage.setItem("posts", JSON.stringify(posts));
+};
+
 export const createPost = (id: number, author: string, text: string): Post => {
   return {
     id,
@@ -38,11 +46,10 @@ export const loadInitialData = function () {
 };
 
 export const getLoggedInUser = function () {
-  const users = localStorage.getItem("users")
-  const usersDeserialized: User[] = JSON.parse(users!!)
-  return usersDeserialized.find((user) => user.loggedIn)
+  const users = localStorage.getItem("users");
+  const usersDeserialized: User[] = JSON.parse(users!!);
+  return usersDeserialized.find((user) => user.loggedIn);
 };
-
 
 export const loadMoreData = () => {
   let currentPosts: Array<Post> = JSON.parse(localStorage.getItem("posts")!!);
@@ -69,24 +76,18 @@ export const loadMoreData = () => {
     )
   );
   localStorage.setItem("posts", JSON.stringify(currentPosts));
+  return currentPosts;
 };
 
-export const startWebSocket = (triggerRerender: () => void) => {
-  const ws = new WebSocket('wss://socketsbay.com/wss/v2/2/demo/')
+export const startWebSocket = () => {
+  const ws = new WebSocket("wss://socketsbay.com/wss/v2/2/demo/");
   ws.onmessage = (e) => {
-    const text = e.data
-    if (text == "IK Test!") {
-      const currentPosts: Post[] = JSON.parse(localStorage.getItem("posts")!!)
-      let nextId = Math.max(...currentPosts.map((post) => post.id)) + 1
-      currentPosts.unshift(
-        createPost(
-          nextId,
-          "websocket",
-          text + " " + nextId.toString()
-        )
-      )
-      localStorage.setItem("posts", JSON.stringify(currentPosts))
-      triggerRerender()
+    const text = e.data;
+    if (text == "IKPROJ Test!") {
+      const currentPosts = getPostsBackend();
+      let nextId = Math.max(...currentPosts.map((post: Post) => post.id)) + 1;
+      currentPosts.unshift(createPost(nextId, "websocket", text));
+      localStorage.setItem("posts", JSON.stringify(currentPosts));
     }
-  }
-}
+  };
+};
